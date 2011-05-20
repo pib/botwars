@@ -1,0 +1,20 @@
+CFLAGS=-I./includes -I./includes/SDL -I./includes/mac -g -c -Wall
+LIBS=libs/SDL_prim.o ./libs/mac/SDL_ttf.o `freetype-config --libs` ./libs/mac/libSDL.a ./libs/mac/libSDLmain.a  -Wl,-framework,OpenGL -Wl,-framework,IOKit -Wl,-framework,Cocoa -Wl,-framework,QuickTime -Wl,-framework,ApplicationServices -Wl,-framework,Carbon -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit
+
+all: server
+
+server: server.o libs/SDL_prim.o robot.o
+	gcc -g ${LIBS} server.o robot.o -o server
+
+server.o: server.c includes/server.h includes/mytypes.h includes/robonet.h
+	gcc server.c ${CFLAGS} 
+
+robot.o: robot.c includes/robot.h
+	gcc robot.c ${CFLAGS}
+
+libs/SDL_prim.o:
+	gcc libs/SDL_prim.c -o libs/SDL_prim.o ${CFLAGS}
+
+clean:
+	rm *.o server
+

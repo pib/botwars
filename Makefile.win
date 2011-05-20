@@ -1,0 +1,39 @@
+# Project: BotServer
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = BotServer_private.res
+OBJ  = main.o SDL_prim.o robot.o $(RES)
+LINKOBJ  = main.o SDL_prim.o robot.o $(RES)
+LIBS =  -L"lib" -mwindows -lmingw32 -lSDLmain -lSDL -lSDL_ttf  -lgmon -pg  -g3 
+INCS =  -I"include"  -I"C:/Dev-Cpp/include/SDL" 
+CXXINCS =  -I"lib/gcc/mingw32/3.4.2/include"  -I"include/c++/3.4.2/backward"  -I"include/c++/3.4.2/mingw32"  -I"include/c++/3.4.2"  -I"include"  -I"C:/Dev-Cpp/include/SDL" 
+BIN  = BotServer.exe
+CXXFLAGS = $(CXXINCS)   -pg -g3
+CFLAGS = $(INCS) -Dmain=SDL_main   -pg -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before BotServer.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "BotServer.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+SDL_prim.o: SDL_prim.c
+	$(CC) -c SDL_prim.c -o SDL_prim.o $(CFLAGS)
+
+robot.o: robot.c
+	$(CC) -c robot.c -o robot.o $(CFLAGS)
+
+BotServer_private.res: BotServer_private.rc 
+	$(WINDRES) -i BotServer_private.rc --input-format=rc -o BotServer_private.res -O coff 
