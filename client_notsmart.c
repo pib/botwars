@@ -14,7 +14,7 @@ int main(int ac, char ** av)
 	if(ac > 1)
 		name = av[1];
 	else
-		name = "client stupid";
+		name = "client notsmart";
 
 	ret = send_start_packet(sock, 1, name, &sp);
 	
@@ -30,8 +30,8 @@ int main(int ac, char ** av)
 		ret = send_message(sock, 'W', 0.0, &stat_pac);
 		ret = send_message(sock, 'W', 0.0, &stat_pac);
 		ret = send_message(sock, 'W', 0.0, &stat_pac);
-		if((done % 10) == 0)
-		ret = send_message(sock, 'R', 0.00001, &stat_pac);
+		//if((done % 10) == 0)
+		ret = send_message(sock, 'R', 0.1, &stat_pac);
 		ret = send_message(sock, 'F', 0.1, &stat_pac);
 	}
 	return 0;

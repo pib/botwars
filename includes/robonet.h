@@ -22,7 +22,7 @@ typedef struct {
              // B - decrease forward velocity
              // X - fire!
              // S - Scan for enemies.
-        uint32 param;
+        float param;
 } msg_packet;
         
 
