@@ -31,7 +31,7 @@ int main(int ac, char ** av)
 		ret = send_message(sock, 'W', 0.0, &stat_pac);
 		ret = send_message(sock, 'W', 0.0, &stat_pac);
 		if((done % 10) == 0)
-		ret = send_message(sock, 'R', 0.00001, &stat_pac);
+		ret = send_message(sock, 'R', 0.5, &stat_pac);
 	}
 	return 0;
 }
